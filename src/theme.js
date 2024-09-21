@@ -52,13 +52,13 @@ const theme = extendTheme({
     },
     MuiInputLabel: {
       styleOverrides: {
-        root: 
+        root:
            {
-            fontSize: '0.875rem'
-          }
-        }
+             fontSize: '0.875rem'
+           }
       }
-    },
+    }
+    ,
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
@@ -76,7 +76,7 @@ const theme = extendTheme({
       }
     }
   }
-  
+
   // ...other properties
 })
 
