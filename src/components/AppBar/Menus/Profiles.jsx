@@ -34,7 +34,7 @@ function Profiles() {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar
-            sx={{ width: 34, height: 34 }}
+            sx={{ width: 36, height: 36 }}
             alt='Cuongdeptrai'
             src="https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/422665151_1133924447812912_5860005939907968790_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGEXDYdZbvr_BdAj990OX_LzARdLemOm4DMBF0t6Y6bgFaYByP4bcxy-lLYC8dHVkB_KpifO_vMoIzvgOF39DbX&_nc_ohc=_9QlFVKNAmMQ7kNvgFIKOOT&_nc_ht=scontent.fhan15-2.fna&_nc_gid=AnklSyu4dUN64Anb_gdL3mj&oh=00_AYCXMx9aey2tiWXoJM8AjFmJ5BtKfckZ2bLMafgzAL5AcA&oe=66F0718E"
           />
