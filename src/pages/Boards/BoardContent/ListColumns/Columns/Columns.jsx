@@ -18,12 +18,23 @@ import AddCardIcon from '@mui/icons-material/AddCard'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ListCards from './ListCards/ListCards'
 import { mapOrder } from '~/ultils/sorts'
-import { colors } from '@mui/material'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 
+function Columns({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: column._id,
+    data: { ...column }
+  })
+  
+  const dndColumnStyles = {
+    touchAction: 'none', // Dành cho sensor default dạng PointerSensor
+    // nếu sử dụng CSS.Transform thì sẽ bị stretch
+    transform: CSS.Translate.toString(transform),
+    transition
+  };
 
-
-function Columns({column}) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -37,6 +48,10 @@ function Columns({column}) {
   return (
     <Box
       //Box Column
+      ref={setNodeRef}
+      style={dndColumnStyles}
+      {...attributes} 
+      {...listeners}
       sx={{
         minWidth: '300px',
         maxWidth: '300px',
@@ -69,10 +84,10 @@ function Columns({column}) {
             <ExpandMoreIcon
               sx={{ color: 'text.primary', cursor: 'pointer' }}
               id="basic-column-dropdown"
+              onClick={handleClick}
               aria-controls={open ? 'basic-menu-column-dropdown' : undefined}
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
-              onClick={handleClick}
             />
           </Tooltip>
           <Menu
