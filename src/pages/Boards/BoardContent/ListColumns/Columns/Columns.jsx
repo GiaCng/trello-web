@@ -27,7 +27,7 @@ import CloseIcon from '@mui/icons-material/Close'
 
 
 
-function Columns({ column }) {
+function Columns({ column, createNewCard }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
@@ -62,13 +62,28 @@ function Columns({ column }) {
 
   const [newCardTitle, setNewCardTitle] =useState('')
 
-  const addNewCard = () => {
+  const addNewCard = async() => {
     if (!newCardTitle) {
       toast.error('Please enter Card title',{ position: 'bottom-right'})
       return
     }
     // console.log(newCardTitle)
+
+    //Tạo dữ liệu card để gọi API
+    const newCardData = {
+      title: newCardTitle,
+      columnId: column._id
+    }
     // Goi API o day
+    /**
+     * Gọi tên props function createNewColumn nằm ở component cha cao nhất  (boards/_id.jsx)
+     * Lưu ý: về sau ở học phần MERN Stack Advance nâng cao học trực tiếp mình sẽ nói thì chúng ta sẽ đưa
+     * dữ liệu Board ra ngoài Redux Global Store,
+     * Thì chúng ta có thể gọi luôn API ở đây thay vì phải lần lượt gọi ngược lên những 
+     * component cha phía bên trên. (Đối với component con nằm càng sâu thì càng khổ)
+     * Với việc sử dụng Redux thì code sẽ Clean hơn
+     */
+    await createNewCard(newCardData)
 
     // Dong trang thai them Card moi & Clear Input
     toggleOpenNewCardForm()
