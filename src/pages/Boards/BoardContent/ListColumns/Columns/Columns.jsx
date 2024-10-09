@@ -26,7 +26,6 @@ import { toast } from 'react-toastify'
 import CloseIcon from '@mui/icons-material/Close'
 
 
-
 function Columns({ column, createNewCard }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
@@ -65,7 +64,7 @@ function Columns({ column, createNewCard }) {
 
   const addNewCard = () => {
     if (!newCardTitle) {
-      toast.error('Please enter Card title',{ position: 'bottom-right'})
+      toast.error('Please enter Card title', { position: 'bottom-right' })
       return
     }
     // console.log(newCardTitle)
@@ -80,11 +79,11 @@ function Columns({ column, createNewCard }) {
      * Gọi tên props function createNewColumn nằm ở component cha cao nhất  (boards/_id.jsx)
      * Lưu ý: về sau ở học phần MERN Stack Advance nâng cao học trực tiếp mình sẽ nói thì chúng ta sẽ đưa
      * dữ liệu Board ra ngoài Redux Global Store,
-     * Thì chúng ta có thể gọi luôn API ở đây thay vì phải lần lượt gọi ngược lên những 
+     * Thì chúng ta có thể gọi luôn API ở đây thay vì phải lần lượt gọi ngược lên những
      * component cha phía bên trên. (Đối với component con nằm càng sâu thì càng khổ)
      * Với việc sử dụng Redux thì code sẽ Clean hơn
      */
-     createNewCard(newCardData)
+    createNewCard(newCardData)
 
     // Dong trang thai them Card moi & Clear Input
     toggleOpenNewCardForm()
@@ -232,7 +231,7 @@ function Columns({ column, createNewCard }) {
                   }
                 }}
               />
-              <Box sx={{ display: 'flex', alignItems:'center', gap:1}}>
+              <Box sx={{ display: 'flex', alignItems:'center', gap:1 }}>
                 <Button
                   onClick={addNewCard}
                   variant="contained" color="success" size="small"
@@ -240,12 +239,12 @@ function Columns({ column, createNewCard }) {
                     boxShadow: 'none',
                     border: '0.5px solid',
                     borderColor: (theme) => theme.palette.success.main,
-                    '&:hover': {bgcolor: (theme) => theme.palette.success.main}
+                    '&:hover': { bgcolor: (theme) => theme.palette.success.main }
                   }}
                 >Add</Button>
                 <CloseIcon
                   fontSize='small'
-                  sx={{ 
+                  sx={{
                     color: (theme) => theme.palette.warning.light,
                     cursor: 'pointer'
                   }}
