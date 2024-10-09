@@ -29,7 +29,7 @@ const ACTIVE_DRAG_ITEM_TYPE ={
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard}) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
 
   // Nếu dùng PointerSensor mặc định thì phải kết hợp với thuộc tính Css touch-action: none ở những phần tử kéo thả nhưng có bug
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
@@ -272,11 +272,15 @@ function BoardContent({ board, createNewColumn, createNewCard}) {
         //Dùng arrayMove của thằng dnd-kit để sắp xếp lại mảng Columns ban đầu
         // Code của thằng arrayMove ở đây: dnd-kit/packages/sortable/src/utilities/arrayMove.ts
         const dndOrderedColumns = arrayMove(orderedColumns, oldColumnIndex, newColumnIndex)
-        // 2 cai console.log dữ liệu này để sau này xử lý API
-        // const dndOrderedColumnsIds = dndOrderedColumns.map(c => c._id)
-        // console.log('dndOrderedColumns', dndOrderedColumns)
-        // console.log('dndOrderedColumnsIds', dndOrderedColumnsIds)
 
+        /**
+         * Gọi lên props function moveColumns nằm ở Component cha cao nhất (boards/_id.jsx)
+         * Lưu ý: đưa dữ liệu Board ra ngoài Redux Global Store.
+         * và lúc này chúng ta có thể gọi API ở đây
+         */
+        moveColumns(dndOrderedColumns)
+
+        //Cập nhật lại state khi kéo thả xog
         setOrderedColumns(dndOrderedColumns)
       }
     }
