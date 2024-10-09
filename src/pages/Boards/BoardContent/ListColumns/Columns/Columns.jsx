@@ -54,7 +54,8 @@ function Columns({ column, createNewCard }) {
     setAnchorEl(null)
   }
 
-  const orderedCards = mapOrder(column?.cards, column.cardOrderIds, '_id')
+  //Card đã được sắp xếp ở thằng cha
+  const orderedCards = column.cards
   // phai boc div o day
 
   const [openNewCardForm, setOpenNewCardForm] =useState(false)
@@ -62,7 +63,7 @@ function Columns({ column, createNewCard }) {
 
   const [newCardTitle, setNewCardTitle] =useState('')
 
-  const addNewCard = async() => {
+  const addNewCard = () => {
     if (!newCardTitle) {
       toast.error('Please enter Card title',{ position: 'bottom-right'})
       return
@@ -83,7 +84,7 @@ function Columns({ column, createNewCard }) {
      * component cha phía bên trên. (Đối với component con nằm càng sâu thì càng khổ)
      * Với việc sử dụng Redux thì code sẽ Clean hơn
      */
-    await createNewCard(newCardData)
+     createNewCard(newCardData)
 
     // Dong trang thai them Card moi & Clear Input
     toggleOpenNewCardForm()
