@@ -17,7 +17,7 @@ function ListColumns({ columns, createNewColumn, createNewCard }) {
 
   const [newColumnTitle, setNewColumnTitle] =useState('')
   
-  const addNewColumn = async () => {
+  const addNewColumn = () => {
     if (!newColumnTitle) {
       toast.error('Please enter Column title')
       return
@@ -35,7 +35,7 @@ function ListColumns({ columns, createNewColumn, createNewCard }) {
      * component cha phía bên trên. (Đối với component con nằm càng sâu thì càng khổ)
      * Với việc sử dụng Redux thì code sẽ Clean hơn
      */
-    await createNewColumn(newColumnData)
+    createNewColumn(newColumnData)
 
 
     // Dong trang thai them Column moi & Clear Input
